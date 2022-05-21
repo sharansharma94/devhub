@@ -1,19 +1,19 @@
-## code sharing application
+## Code sharing application
 
-### features
+### Features
 
-1. themes and formatting styles are viewers perspective
+1. Themes and formatting styles are viewers perspective
 
 2. Readme viewer for explanations
 
-3. sharing of code with other users 
+3. Sharing of code with other users 
 
-4. can be bookmarked or stared
+4. Can be bookmarked or stared
 
-5. can easily create enki (repetative stratage to rember )
+5. Can easily create enki (repetative stratage to rember )
 
-#### backend
-go lang
+#### Backend
+Go lang
 
-#### frontend 
+#### Frontend 
 Typescript react
