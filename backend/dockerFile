@@ -1,0 +1,14 @@
+FROM golang:1.18.2-alpine3.14 as builder
+COPY go.mod go.sum /go/src/devhub/backend/
+WORKDIR /go/src/devhub/backend
+RUN go mod download
+COPY . /go/src/devhub/backend/
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o build/devhub devhub/backend
+
+
+
+FROM alpine
+RUN apk add --no-cache ca-certificates && upfate-ca-certificates
+COPY --from=builder /go/src/devhub/backend/build/devhub /usr/bin/devhub
+EXPOSE 8080 8080
+ENTRYPOINT ["/usr/bin/devhub"]
