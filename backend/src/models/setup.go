@@ -8,25 +8,26 @@ import (
 )
 
 var (
-	DB  *gorm.DB
+	Db  *gorm.DB
 	Err error
 )
 
-func ConnectDatabase() {
+func ConnectDatabase() *gorm.DB {
 	dsn := "host=localhost user=sharan password=pass dbname=practice port=5432 "
-	DB, Err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	Db, Err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if Err != nil {
 		panic(fmt.Sprintf("Error while connecting DB {{.}}", Err))
 	}
 
 	// schema migration
-	DB.AutoMigrate(&Code{})
-
-	fmt.Println("working till here", DB)
-
+	Db.AutoMigrate(&Code{})
+	return Db
 }
 
 func GetDB() *gorm.DB {
-	return DB
+	if Db == nil {
+		Db = ConnectDatabase()
+	}
+	return Db
 }

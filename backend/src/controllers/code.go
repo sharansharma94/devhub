@@ -17,6 +17,6 @@ func FindCode(ctx *gin.Context) {
 	// DB.Find(&code)
 
 	fmt.Println(DB)
-	// DB.Create(&models.Code{ID: 3, Code: "alert('test')"})
+	DB.Create(&models.Code{ID: 3, Code: "alert('test')"})
 	ctx.JSON(http.StatusOK, gin.H{"data": code})
 }
