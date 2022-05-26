@@ -1,6 +1,7 @@
 package models
 
 import (
+	"devhub/src/config"
 	"fmt"
 
 	"gorm.io/driver/postgres"
@@ -13,7 +14,9 @@ var (
 )
 
 func ConnectDatabase() *gorm.DB {
-	dsn := "host=localhost user=sharan password=pass dbname=practice port=5432 "
+	conf := config.GetDBConfig()
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s", conf.POSTGRES_HOST, conf.POSTGRES_USER, conf.POSTGRES_PASSWORD, conf.POSTGRES_DB, conf.POSTGRES_PORT)
+	fmt.Println(dsn)
 	Db, Err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if Err != nil {
