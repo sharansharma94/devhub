@@ -7,13 +7,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
-func main(){
+func main() {
 	r := gin.Default()
 
 	models.ConnectDatabase()
 
-	r.GET("/",controllers.FindCode)
+	r.GET("/", controllers.FindAllCode)
+	r.GET("/:id", controllers.FindCode)
+	r.POST("/", controllers.CreateCode)
+	r.DELETE("/:id", controllers.DeleteCode)
 
 	r.Run()
 }
