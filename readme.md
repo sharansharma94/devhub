@@ -13,7 +13,13 @@
 5. Can easily create enki (repetative stratage to rember )
 
 #### Backend
+
 Go lang
 
+to run docker build and run container you need to use this command 
+```
+    chmod +x ./run.sh
+    ./run.sh
+```
 #### Frontend 
 Typescript react

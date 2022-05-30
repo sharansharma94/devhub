@@ -30,6 +30,7 @@ node_modules
 dist
 dist-ssr
 *.local
+build
 
 # Editor directories and files
 .vscode/*
@@ -42,3 +43,4 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.env*

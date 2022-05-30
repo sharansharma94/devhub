@@ -18,7 +18,12 @@ type Config struct {
 
 func GetDBConfig() Config {
 
-	err := godotenv.Load()
+	var err error
+	if os.Getenv("GIN_MODE") == "release" {
+		err = godotenv.Load(".env-prod")
+	} else {
+		err = godotenv.Load()
+	}
 	if err != nil {
 		log.Fatalf("Error occured while loading env file %s ", err)
 	}
