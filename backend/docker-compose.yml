@@ -1,25 +1,24 @@
-version : "3.7"
-
+version: '3.8'
 services:
-  database:
-    image: postgres
+  db:
+    image: postgres:latest
     restart: always
-    env_file:
-      - .env
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
-      - data:/var/lib/postgresql/data
-  server:
-    build :
-      context: .
-      dockerfile: dockerfile
-      env_file: .env
-      depends_on:
-        - database
-      networks: 
-        - default
-      ports: 
-        - "8080:8080"
+      - db:/var/lib/postgresql/data
+  api:
+    container_name: code-api
+    ports:
+      - '8080:8080'
+    build:
+      context: ./
+      dockerfile: ./dockerFile
+    depends_on:
+     - "db"
 volumes:
-  data:
+  db:
+    driver: local
